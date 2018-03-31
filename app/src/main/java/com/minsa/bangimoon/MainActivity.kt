@@ -55,10 +55,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLoa
                 val json = JSONObject(str).getJSONArray("data")
                 if (json.length() == 0)
                     return
-                mMap.clear()
                 val newMarkers = ArrayList<Marker>()
                 (0 until json.length()).forEach {
-                    json.getJSONObject(0).let {
+                    json.getJSONObject(it).let {
                         val markerLocation = LatLng(it.getDouble("lat"),
                                 it.getDouble("lon"))
                         val marker = mMap.addMarker(MarkerOptions()
